@@ -145,11 +145,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-To re-download and verify the official source file:
-
-```bash
-python3 scripts/download_data.py
-```
+The data-download and verification command will be documented after its script
+has been rewritten, understood and tested during the restarted workflow.
 
 ## Rules fixed before modelling
 
