@@ -1,0 +1,115 @@
+{
+  "source": {
+    "path": "data/raw/default of credit card clients.xls",
+    "sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+    "sheet": "Data",
+    "header_row_zero_based": 1
+  },
+  "shape": {
+    "rows": 30000,
+    "columns": 25
+  },
+  "schema": {
+    "all_columns_integer": true,
+    "duplicate_column_names": 0,
+    "columns": [
+      "ID",
+      "LIMIT_BAL",
+      "SEX",
+      "EDUCATION",
+      "MARRIAGE",
+      "AGE",
+      "PAY_0",
+      "PAY_2",
+      "PAY_3",
+      "PAY_4",
+      "PAY_5",
+      "PAY_6",
+      "BILL_AMT1",
+      "BILL_AMT2",
+      "BILL_AMT3",
+      "BILL_AMT4",
+      "BILL_AMT5",
+      "BILL_AMT6",
+      "PAY_AMT1",
+      "PAY_AMT2",
+      "PAY_AMT3",
+      "PAY_AMT4",
+      "PAY_AMT5",
+      "PAY_AMT6",
+      "default payment next month"
+    ]
+  },
+  "missing_cells": 0,
+  "identifier": {
+    "unique_values": 30000,
+    "duplicate_values": 0,
+    "minimum": 1,
+    "maximum": 30000
+  },
+  "duplicates": {
+    "full_rows_including_id": 0,
+    "rows_repeating_predictors": 56,
+    "rows_repeating_predictors_and_target": 35,
+    "repeated_predictor_groups": 52
+  },
+  "target": {
+    "counts": {
+      "0": 23364,
+      "1": 6636
+    },
+    "rates": {
+      "0": 0.7788,
+      "1": 0.2212
+    }
+  },
+  "category_counts": {
+    "SEX": {
+      "1": 11888,
+      "2": 18112
+    },
+    "EDUCATION": {
+      "0": 14,
+      "1": 10585,
+      "2": 14030,
+      "3": 4917,
+      "4": 123,
+      "5": 280,
+      "6": 51
+    },
+    "MARRIAGE": {
+      "0": 54,
+      "1": 13659,
+      "2": 15964,
+      "3": 323
+    }
+  },
+  "ranges": {
+    "age": {
+      "minimum": 21,
+      "maximum": 79
+    },
+    "credit_limit": {
+      "minimum": 10000,
+      "maximum": 1000000
+    },
+    "payment_status": {
+      "minimum": -2,
+      "maximum": 8,
+      "negative_cells": 59055,
+      "zero_cells": 95919
+    },
+    "bill_amount": {
+      "minimum": -339603,
+      "maximum": 1664089,
+      "negative_cells": 3932,
+      "zero_cells": 18105
+    },
+    "payment_amount": {
+      "minimum": 0,
+      "maximum": 1684259,
+      "negative_cells": 0,
+      "zero_cells": 36897
+    }
+  }
+}

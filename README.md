@@ -130,11 +130,12 @@ Prepare a concise GitHub overview and truthful CV-ready description.
 
 ## Current status
 
-The project topic, dataset and research question have been confirmed. Existing
-processed files were created in an earlier run and are not treated as newly
-completed work. The project is restarting from the raw-data audit. Commands for
-the audit will be added after the new script has been written, understood and
-verified.
+The project topic, dataset and research question have been confirmed. The raw
+data audit has been rewritten and verified. It confirms the documented
+30,000-row, 25-column structure, no missing cells, no duplicate IDs and a
+22.12% default rate. Existing processed files were created in an earlier run
+and are not treated as newly completed work. The next task is to define field
+roles and transparent recoding rules before any data split or modelling.
 
 ## Reproducible setup
 
@@ -144,6 +145,15 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
+
+Run the verified raw-data audit:
+
+```bash
+python scripts/audit_data.py
+```
+
+The audit writes [`reports/data_audit.md`](reports/data_audit.md) and
+[`reports/data_audit.json`](reports/data_audit.json).
 
 The data-download and verification command will be documented after its script
 has been rewritten, understood and tested during the restarted workflow.
