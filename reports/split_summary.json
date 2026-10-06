@@ -1,0 +1,19 @@
+{
+  "random_state": 42,
+  "strategy": "stratified 60/20/20 train/validation/test",
+  "train": {
+    "rows": 18000,
+    "default_count": 3982,
+    "default_rate": 0.2212222222222222
+  },
+  "validation": {
+    "rows": 6000,
+    "default_count": 1327,
+    "default_rate": 0.22116666666666668
+  },
+  "test": {
+    "rows": 6000,
+    "default_count": 1327,
+    "default_rate": 0.22116666666666668
+  }
+}

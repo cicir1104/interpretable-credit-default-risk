@@ -24,7 +24,7 @@ stage begins.
 1. Binary targets and class probabilities
 2. Logistic function, log-odds and odds ratios
 3. Train, validation and test roles
-4. Stratified cross-validation
+4. Stratified training, validation and test roles
 5. Confusion matrix, precision, recall and F1 score
 6. ROC-AUC and precision-recall curves
 7. Probability calibration
@@ -36,7 +36,7 @@ stage begins.
 2. Overfitting, tree depth and regularisation
 3. Bagging and random forests
 4. Boosting and sequential error correction
-5. Hyperparameter tuning inside cross-validation
+5. Hyperparameter and threshold selection on validation data only
 
 ### 2.3 Interpretation and decisions
 

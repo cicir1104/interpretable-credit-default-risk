@@ -33,6 +33,35 @@ non-defaulting client?
 Because the data are historical and from one market, this is a modelling study,
 not a production credit policy for a present-day lender.
 
+## Key results
+
+For a step-by-step Chinese explanation of the question, variables, models,
+metrics and conclusions, see [`PROJECT_GUIDE_CN.md`](PROJECT_GUIDE_CN.md).
+
+The experiment uses a fixed stratified 60/20/20 train/validation/test split.
+Hyperparameters and the classification threshold are selected without using the
+test set. Under an explicitly illustrative cost ratio in which a missed default
+costs five times an unnecessary high-risk flag, validation selected a random
+forest and a threshold of 0.14.
+
+| Held-out test metric | Result |
+| --- | ---: |
+| ROC AUC | 0.776 |
+| Precision-recall AUC | 0.552 |
+| Brier score | 0.135 |
+| Precision at threshold 0.14 | 0.338 |
+| Recall at threshold 0.14 | 0.808 |
+| F1 at threshold 0.14 | 0.477 |
+| Illustrative cost per 1,000 | 561.8 |
+
+At the conventional threshold of 0.50, recall was only 0.354. Lowering the
+threshold increased recall to 0.808 at the cost of more false positives. This is
+a decision trade-off, not evidence that 0.14 is an appropriate bank policy.
+
+![ROC curves](reports/figures/roc_curves.png)
+
+![Feature importance](reports/figures/feature_importance.png)
+
 ## Project stages
 
 ### 1 Problem definition and data understanding
@@ -66,7 +95,8 @@ identifier and demographic audit fields.
 
 #### 2.2 Split the data
 
-Create stratified training and test sets before learning any transformation.
+Create stratified training, validation and test sets before learning any
+transformation.
 
 #### 2.3 Build baseline models
 
@@ -130,12 +160,10 @@ Prepare a concise GitHub overview and truthful CV-ready description.
 
 ## Current status
 
-The project topic, dataset and research question have been confirmed. The raw
-data audit has been rewritten and verified. It confirms the documented
-30,000-row, 25-column structure, no missing cells, no duplicate IDs and a
-22.12% default rate. Existing processed files were created in an earlier run
-and are not treated as newly completed work. The next task is to define field
-roles and transparent recoding rules before any data split or modelling.
+The complete reproducible workflow is implemented and verified: source download
+and hash checking, raw-data audit, field-role separation, model comparison,
+validation-only threshold selection, held-out test evaluation, calibration,
+permutation and SHAP explanations, subgroup audit, figures and technical report.
 
 ## Reproducible setup
 
@@ -146,17 +174,43 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Run the verified raw-data audit:
+Run the complete analysis:
 
 ```bash
-python scripts/audit_data.py
+python scripts/run_all.py
 ```
 
-The audit writes [`reports/data_audit.md`](reports/data_audit.md) and
-[`reports/data_audit.json`](reports/data_audit.json).
+Or run each stage separately:
 
-The data-download and verification command will be documented after its script
-has been rewritten, understood and tested during the restarted workflow.
+```bash
+python scripts/download_data.py
+python scripts/audit_data.py
+python scripts/create_modelling_table.py
+python scripts/train_evaluate.py
+```
+
+Main outputs:
+
+- [`PROJECT_GUIDE_CN.md`](PROJECT_GUIDE_CN.md)
+- [`reports/data_audit.md`](reports/data_audit.md)
+- [`reports/field_roles.md`](reports/field_roles.md)
+- [`reports/model_metrics.csv`](reports/model_metrics.csv)
+- [`reports/subgroup_audit.csv`](reports/subgroup_audit.csv)
+- [`reports/technical_report.md`](reports/technical_report.md)
+- [`reports/figures/`](reports/figures/)
+
+Raw and processed data are excluded from Git. The download script retrieves the
+official UCI archive and verifies both the archive and workbook SHA-256 hashes.
+
+## Repository structure
+
+```text
+data/          source notes plus ignored raw and processed data
+scripts/       download, audit, table creation, training and orchestration
+src/           reusable data and evaluation functions
+tests/         unit tests for data roles and threshold logic
+reports/       metrics, explanations, subgroup audit and technical report
+```
 
 ## Rules fixed before modelling
 
